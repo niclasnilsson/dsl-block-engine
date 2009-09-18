@@ -41,7 +41,6 @@ module DslBlockEngine
     private
 
     def on name, &block
-      puts "In on method: #{block.inspect}"
       @blocks[:on] ||= {}
       @blocks[:on][name] = block
     end
