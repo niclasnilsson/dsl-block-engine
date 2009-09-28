@@ -15,6 +15,7 @@ describe DslBlockEngine do
       end
     }
     
+    @engine.categories = [:on]
     @engine.load code
     @engine.blocks[:on].size.should == 2
   end
@@ -26,6 +27,7 @@ describe DslBlockEngine do
       end
     }
 
+    @engine.categories = [:on]
     @engine.load code
     context = @engine.create_context :a, :b
     
@@ -34,6 +36,18 @@ describe DslBlockEngine do
     
     result = @engine.execute_in_context context, :on, :event1
     result.should == 6
+  end
+
+  it "should support different names for the categories" do
+    code = %q{
+      at :event1 do
+        8
+      end
+    }
+
+    @engine.categories = [:at]
+    @engine.load code
+    @engine.blocks[:at].size.should == 1
   end
 end
 

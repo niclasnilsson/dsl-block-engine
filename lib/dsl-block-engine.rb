@@ -13,8 +13,11 @@ module DslBlockEngine
   end
   
   class DslBlockEngine
+    attr_accessor :categories
+    
     def initialize
       @blocks = {}
+      @categories = []
     end
     
     def load code
@@ -38,11 +41,13 @@ module DslBlockEngine
       ctx.instance_eval &b
     end
     
-    private
-
-    def on name, &block
-      @blocks[:on] ||= {}
-      @blocks[:on][name] = block
+    def method_missing name, *args, &block
+      category = name
+      event = args[0]
+      super.method_missing(name, args, &block) unless @categories.include? category
+      
+      @blocks[category] ||= {}
+      @blocks[category][event] = block
     end
 
   end
