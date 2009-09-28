@@ -40,14 +40,24 @@ describe DslBlockEngine do
 
   it "should support different names for the categories" do
     code = %q{
-      at :event1 do
-        8
+      before :event1 do
+      end
+
+      on :event1 do
+      end
+
+      on :event2 do
+      end
+
+      after :event2 do
       end
     }
 
-    @engine.categories = [:at]
+    @engine.categories = [:before, :on, :after]
     @engine.load code
-    @engine.blocks[:at].size.should == 1
+    @engine.blocks[:before].size.should == 1
+    @engine.blocks[:on].size.should == 2
+    @engine.blocks[:after].size.should == 1
   end
 end
 
