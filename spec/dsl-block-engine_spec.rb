@@ -59,5 +59,6 @@ describe DslBlockEngine do
     @engine.blocks[:on].size.should == 2
     @engine.blocks[:after].size.should == 1
   end
+
 end
 

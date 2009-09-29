@@ -27,25 +27,24 @@ module DslBlockEngine
     def blocks
       @blocks
     end
-    
+
     def create_context *attrs
       o = Object.new
       attrs.each do |attr|
         o.class.send :attr_accessor, attr
       end
-      o 
+      o
     end
-    
+
     def execute_in_context ctx, category, event
       b = @blocks[category][event]
       ctx.instance_eval &b
     end
-    
+
     def method_missing name, *args, &block
       category = name
       event = args[0]
       super.method_missing(name, args, &block) unless @categories.include? category
-      
       @blocks[category] ||= {}
       @blocks[category][event] = block
     end
