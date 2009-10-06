@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{dsl-block-engine}
-  s.version = "0.0.3"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Niclas Nilsson"]
-  s.date = %q{2009-10-05}
+  s.date = %q{2009-10-06}
   s.description = %q{...}
   s.email = %q{niclas.nilsson@factor10.com}
   s.extra_rdoc_files = [
@@ -17,8 +17,11 @@ Gem::Specification.new do |s|
      "README.rdoc"
   ]
   s.files = [
-    "README.rdoc",
+    ".gitignore",
+     "LICENSE",
+     "README.rdoc",
      "Rakefile",
+     "VERSION",
      "dsl-block-engine.gemspec",
      "lib/dsl-block-engine.rb",
      "spec/dsl-block-engine_spec.rb",
