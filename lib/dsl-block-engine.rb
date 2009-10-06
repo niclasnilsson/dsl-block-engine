@@ -14,7 +14,7 @@ module DslBlockEngine
   
   class DslBlockEngine
     attr_accessor :categories
-    
+
     def initialize
       @blocks = {}
       @categories = []
@@ -30,9 +30,15 @@ module DslBlockEngine
 
     def create_context *attrs
       o = Object.new
-      attrs.each do |attr|
-        o.class.send :attr_accessor, attr
+
+      def o.add_attribute name
+        self.class.send :attr_accessor, name
       end
+
+      attrs.each do |attr|
+        o.add_attribute attr
+      end
+      
       o
     end
 
